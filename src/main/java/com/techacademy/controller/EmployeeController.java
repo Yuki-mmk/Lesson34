@@ -127,7 +127,7 @@ public class EmployeeController {
 
 	// 従業員更新処理
 	@PostMapping(value = "/{code}/update")
-	public String update(@PathVariable("code") String code, @ModelAttribute Employee employee, BindingResult res,
+	public String update(@PathVariable("code") String code, @Validated Employee employee, BindingResult res,
 			Model model) {
 		if (res.hasErrors()) {
 			return edit(null, employee, model);

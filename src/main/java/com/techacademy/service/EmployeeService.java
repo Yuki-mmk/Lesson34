@@ -50,6 +50,7 @@ public class EmployeeService {
 		return ErrorKinds.SUCCESS;
 	}
 
+	// 従業員更新保存
 	@Transactional
 	public ErrorKinds update(Employee employee, String code) {
 		Employee beforeemployee = findByCode(code);
