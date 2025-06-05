@@ -2,7 +2,10 @@
 package com.techacademy.entity;
 
 import java.time.LocalDateTime;
+import jakarta.persistence.OneToMany;
+import java.util.List;
 
+import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.validator.constraints.Length;
 
@@ -68,5 +71,8 @@ public class Employee {
     // 更新日時
     @Column(nullable = false)
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<Report> reportList;
 
 }
