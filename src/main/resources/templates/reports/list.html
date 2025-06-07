@@ -21,17 +21,19 @@
 								<table class="table table-striped w-100">
 									<thead>
 										<tr>
-											<th>社員番号</th>
 											<th>氏名</th>
-											<th></th>
+											<th>日付</th>
+											<th>タイトル</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="employee:${employeeList}">
-											<td class="align-middle" th:text="${employee.code}"></td>
-											<td class="align-middle" th:text="${employee.name}"></td>
-											<td class="align-middle"><a
-													th:href="@{/employees/{code}/(code=${employee.code})}"
+										<tr th:each="report:${reportList}">
+											<td class="align-middle" th:text="${report.employee.name}"></td>
+											<td class="align-middle"
+												th:text="${#temporals.format(report.reportDate, 'yyyy-MM-dd HH:mm:ss')}">
+											</td>
+											<td class="align-middle" th:text="${report.title}"></td>
+											<td class="align-middle"><a th:href="@{/reports/{code}/(code=${report.employee.code})}"
 													class="btn btn-primary">詳細</a></td>
 										</tr>
 									</tbody>
