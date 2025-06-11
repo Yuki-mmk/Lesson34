@@ -120,13 +120,13 @@ public class ReportController {
 	}
 
 	// 日報更新処理
-	@PostMapping(value = "/{code}/update")
-	public String update(@PathVariable("code") String code, @Validated Report report, BindingResult res, Model model) {
+	@PostMapping(value = "/{id}/update")
+	public String update(@PathVariable("id") Integer id, @Validated Report report, BindingResult res, Model model) {
 		if (res.hasErrors()) {
 			return edit(null, report, model);
 		}
 		try {
-			ErrorKinds result = reportService.update(report, code);
+			ErrorKinds result = reportService.update(report, id);
 
 			if (ErrorMessage.contains(result)) {
 				model.addAttribute(ErrorMessage.getErrorName(result), ErrorMessage.getErrorValue(result));

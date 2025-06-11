@@ -51,7 +51,7 @@ public class ReportService {
 
 	// 日報更新保存
 	@Transactional
-	public ErrorKinds update(Report report, String id) {
+	public ErrorKinds update(Report report, Integer id) {
 
 		report.setDeleteFlg(false);
 
