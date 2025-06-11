@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.SQLRestriction;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,6 +33,7 @@ public class Report {
 		// 日付
 		@Column(nullable = false)
 		@NotNull
+		@DateTimeFormat(pattern = "yyyy-MM-dd")
 		private LocalDate reportDate;
 
 		// タイトル

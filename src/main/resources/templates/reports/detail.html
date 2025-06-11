@@ -26,7 +26,7 @@
 									<tr>
 										<th class="w-25">日付</th>
 										<td class="align-middle"
-											th:text="${#temporals.format(report.reportDate, 'yyyy-MM-dd HH:mm:ss')}">
+											th:text="${#temporals.format(report.reportDate, 'yyyy-MM-dd')}">
 										</td>
 									</tr>
 									<tr>
@@ -39,7 +39,7 @@
 									</tr>
 									<tr>
 										<th>内容</th>
-										<td class="align-middle" th:text="${report.title}"></td>
+										<td class="align-middle"><pre th:text="${report.title}"></pre></td>
 									</tr>
 									<tr>
 										<th>登録日時</th>
@@ -47,21 +47,19 @@
 											th:text="${#temporals.format(report.createdAt, 'yyyy-MM-dd hh:mm:ss')}">
 										</td>
 									</tr>
-									<!--tr>
-										// a <th>更新日時</th>
+									<tr>
+										<th>更新日時</th>
 										<td class="align-middle"
 											th:text="${#temporals.format(report.updatedAt, 'yyyy-MM-dd hh:mm:ss')}">
 										</td>
-									</tr-->　　
+									</tr>　　
 								</table>
 								<div class="mt-5 row g-1">
 									<div class="col-auto">
-										<a th:href="@{/reports}"
-											class="btn btn-primary">更新</a>
+										<a th:href="@{/reports/{id}/update(id=${report.id})}" class="btn btn-primary">更新</a>
 									</div>
 									<div class="col-auto">
-										<form name="form" th:action="@{/reports}"
-											th:method="post">
+										<form name="form" th:action="@{/reports}" th:method="post">
 											<input type="submit" value="削除" class="btn btn-primary">
 										</form>
 									</div>
