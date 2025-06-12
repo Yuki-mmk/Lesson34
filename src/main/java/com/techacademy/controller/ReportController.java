@@ -65,7 +65,8 @@ public class ReportController {
 
 	// 日報新規登録処理
 	@PostMapping(value = "/add")
-	public String add(@Validated Report report, BindingResult res, Model model, @AuthenticationPrincipal UserDetail userDetail) {
+	public String add(@Validated Report report, BindingResult res, Model model,
+			@AuthenticationPrincipal UserDetail userDetail) {
 
 		// 入力チェック
 		if (res.hasErrors()) {

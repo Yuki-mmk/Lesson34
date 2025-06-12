@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.techacademy.constants.ErrorKinds;
+import com.techacademy.entity.Employee;
 import com.techacademy.entity.Report;
 import com.techacademy.repository.ReportRepository;
 
@@ -52,12 +53,21 @@ public class ReportService {
 	// 日報更新保存
 	@Transactional
 	public ErrorKinds update(Report report, Integer id) {
+		Report dbreport = findById(id);
+		List<Report> reportList = reportRepository.findByEmployee(dbreport.getEmployee());
+		for (Report rep : reportList) {
+			if (rep.getReportDate().equals(report.getReportDate())) {
+				if(dbreport.getReportDate().equals(report.getReportDate()))break;
+				return ErrorKinds.DATECHECK_ERROR;
+			}
+		}
 
 		report.setDeleteFlg(false);
 
 		LocalDateTime now = LocalDateTime.now();
 		report.setCreatedAt(now);
 		report.setUpdatedAt(now);
+		report.setEmployee(dbreport.getEmployee());
 
 		reportRepository.save(report);
 		return ErrorKinds.SUCCESS;
@@ -73,5 +83,10 @@ public class ReportService {
 		report.setDeleteFlg(true);
 
 		return ErrorKinds.SUCCESS;
+	}
+
+	public List<Report> findByEmployee(Employee employee) {
+		List<Report> reportList = reportRepository.findByEmployee(employee);
+		return reportList;
 	}
 }
