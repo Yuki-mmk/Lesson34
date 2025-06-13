@@ -39,7 +39,13 @@ public class ReportService {
 	// 日報新規保存
 	@Transactional
 	public ErrorKinds save(Report report) {
-		
+	    List<Report> reportList = reportRepository.findByEmployee(report.getEmployee());
+	    for (Report rep : reportList) {
+	        if (rep.getReportDate().equals(report.getReportDate())) {
+	            return ErrorKinds.DATECHECK_ERROR;
+	        }
+	    }
+
 		report.setDeleteFlg(false);
 
 		LocalDateTime now = LocalDateTime.now();
