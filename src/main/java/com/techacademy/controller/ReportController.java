@@ -29,7 +29,7 @@ public class ReportController {
 	private EmployeeService employeeService = null;
 
 	@Autowired
-	public void ReporteController(ReportService reportService, EmployeeService employeeService) {
+	public ReportController(ReportService reportService, EmployeeService employeeService) {
 		this.reportService = reportService;
 		this.employeeService = employeeService;
 	}
@@ -70,7 +70,6 @@ public class ReportController {
 
 		// 入力チェック
 		if (res.hasErrors()) {
-			System.out.println("日報新規登録で入力エラー");
 			return create(report, model);
 		}
 

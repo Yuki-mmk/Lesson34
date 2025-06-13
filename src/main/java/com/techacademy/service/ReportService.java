@@ -36,10 +36,10 @@ public class ReportService {
 		return report;
 	}
 
-	// 日報保存
+	// 日報新規保存
 	@Transactional
 	public ErrorKinds save(Report report) {
-
+		
 		report.setDeleteFlg(false);
 
 		LocalDateTime now = LocalDateTime.now();
@@ -57,7 +57,8 @@ public class ReportService {
 		List<Report> reportList = reportRepository.findByEmployee(dbreport.getEmployee());
 		for (Report rep : reportList) {
 			if (rep.getReportDate().equals(report.getReportDate())) {
-				if(dbreport.getReportDate().equals(report.getReportDate()))break;
+				if (dbreport.getReportDate().equals(report.getReportDate()))
+					break;
 				return ErrorKinds.DATECHECK_ERROR;
 			}
 		}
@@ -65,7 +66,7 @@ public class ReportService {
 		report.setDeleteFlg(false);
 
 		LocalDateTime now = LocalDateTime.now();
-		report.setCreatedAt(now);
+		report.setCreatedAt(dbreport.getCreatedAt());
 		report.setUpdatedAt(now);
 		report.setEmployee(dbreport.getEmployee());
 

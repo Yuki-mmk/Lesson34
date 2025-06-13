@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.SQLRestriction;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Column;
@@ -39,11 +40,13 @@ public class Report {
 		// タイトル
 		@Column(length = 100, nullable = false)
 		@NotEmpty
+		@Length(max = 100)
 		private String title;
 
 		// 内容
 		@Column(columnDefinition = "LONGTEXT", nullable = false)
 		@NotEmpty
+		@Length(max = 600)
 		private String content;
 
 
